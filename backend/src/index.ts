@@ -28,7 +28,7 @@ mongoose
   .catch((err) => console.error('❌ MongoDB connection error:', err));
 
 // AI microservice URL
-const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://ai-service:5000/generate-quiz';
+const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://ai-service:5000';
 
 interface Question {
   id: string;
@@ -45,7 +45,7 @@ interface AIResponse {
 async function generateQuizFromAI(topic: string): Promise<Question[]> {
   try {
     const response = await axios.post<AIResponse>(
-      AI_SERVICE_URL,
+      `${AI_SERVICE_URL}/generate-quiz`,
       { topic },
       {
         headers: { 'Content-Type': 'application/json' },
