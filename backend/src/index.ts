@@ -135,6 +135,8 @@ app.post('/grade', async (req: Request, res: Response) => {
   }
 });
 
+app.get('/ping', (req, res) => res.send('pong'));
+
 // 🚀 Start backend
 app.listen(port, () => {
   console.log(`🚀 Backend API running at http://localhost:${port}`);

@@ -3,6 +3,7 @@ import QuizComponent from "./components/Quiz";
 import { GlowCard } from "./components/SpotlightCard";
 import { AIInputWithLoading } from "./components/AIInputWithLoading";
 import { useQuiz } from "./hooks/useQuiz";
+import useKeepAlive from "./hooks/useKeepAlive";
 
 function App() {
   const {
@@ -13,12 +14,18 @@ function App() {
     status,
     error,
     bounce,
+    loading,
+    open,
+    setLoading,
     setTopic,
     simulateResponse,
     handleSave,
     setQuiz,
     setAnswers,
+    setOpen,
   } = useQuiz();
+
+  useKeepAlive();
 
   return (
     <div className="min-h-screen bg-gray-800 py-10">
@@ -27,13 +34,15 @@ function App() {
         <GlowCard height={150}>
           <AIInputWithLoading
             onSubmit={simulateResponse}
-            loadingDuration={3000}
             placeholder="Type a topic..."
             onChange={(value) => setTopic(value)}
             value={topic}
+            loading={loading}
+            setLoading={setLoading}
+            error={error}
           />
         </GlowCard>
-        {quiz && (
+        {quiz?.quizId && (
           <QuizComponent
             quiz={quiz}
             onReset={() => setQuiz(null)}
@@ -44,6 +53,8 @@ function App() {
             result={result}
             status={status}
             bounce={bounce}
+            open={open}
+            setOpen={setOpen}
           />
         )}
       </div>

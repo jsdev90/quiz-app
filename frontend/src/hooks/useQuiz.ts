@@ -1,7 +1,7 @@
 // hooks/useQuiz.ts
 import { useEffect, useState } from "react";
 import { GradeResult, Quiz, Status } from "../types";
-import { QUIZ_API_URL, testData } from "../constants";
+import { QUIZ_API_URL } from "../constants";
 import confetti from "canvas-confetti";
 
 export function useQuiz() {
@@ -12,9 +12,12 @@ export function useQuiz() {
   const [status, setStatus] = useState<Status>(Status.Idle);
   const [error, setError] = useState<string | null>(null);
   const [bounce, setBounce] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const simulateResponse = async (message: string) => {
     try {
+      setLoading(true);
       const response = await fetch(
         `${QUIZ_API_URL}/generate?topic=${encodeURIComponent(message)}`,
         {
@@ -24,11 +27,13 @@ export function useQuiz() {
           },
         }
       );
-      console.log("generate response", response);
-      const data: Quiz = testData;
+      const data: Quiz = await response.json();
+      console.log(data);
       setQuiz(data);
+      setLoading(false);
     } catch (err: any) {
       console.log(err.message || "Failed to generate quiz");
+      setLoading(false);
     }
   };
 
@@ -98,10 +103,14 @@ export function useQuiz() {
     status,
     error,
     bounce,
+    loading,
+    open,
+    setLoading,
     setTopic,
     setQuiz,
     setAnswers,
     simulateResponse,
     handleSave,
+    setOpen,
   };
 }

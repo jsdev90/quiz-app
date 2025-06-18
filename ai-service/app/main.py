@@ -127,3 +127,7 @@ async def post_quiz(data: dict = Body(...)):
     if not topic:
         raise HTTPException(status_code=400, detail="Topic is required")
     return QuizResponse(questions=await generate_quiz(topic))
+
+@app.get("/ping", response_class=PlainTextResponse)
+async def ping():
+    return "pong"

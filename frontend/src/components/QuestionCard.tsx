@@ -18,7 +18,7 @@ export const QuestionCard = ({
 
   return (
     <div className={`grid grid-cols-1 py-10 ${className}`}>
-      {items.map((item, idx) => (
+      {items?.map((item, idx) => (
         <div
           key={item?.id}
           className="relative group block p-2 h-full w-full cursor-pointer"
@@ -43,9 +43,9 @@ export const QuestionCard = ({
             )}
           </AnimatePresence>
           <Card>
-            <CardTitle>{`${item.id}. ${item.question}`}</CardTitle>
+            <CardTitle>{`${item.id}. ${item.text}`}</CardTitle>
             <CardDescription>
-              {item.choices.map((choice) => (
+              {item.options.map((choice) => (
                 <div
                   key={choice?.trim()}
                   className="relative flex items-center rounded-md px-3 space-x-2 py-2  hover:bg-gray-700 hover:bg-opacity-10"
