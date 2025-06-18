@@ -40,4 +40,4 @@ export const testData: any = {
   ],
 };
 
-export const QUIZ_API_URL = process.env.REACT_APP_QUIZ_API_URL;
+export const QUIZ_API_URL = process.env.REACT_APP_QUIZ_API_URL || "https://quiz-app-backend-y3rr.onrender.com";
