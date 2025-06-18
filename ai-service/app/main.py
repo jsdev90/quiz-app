@@ -62,14 +62,20 @@ async def call_mistral_api(prompt: str) -> str:
         data = response.json()
         return data["choices"][0]["message"]["content"]
 
+def clean_ai_response(text: str) -> str:
+    # Remove non-escaped control characters (ASCII < 32), except \n and \t if needed
+    return re.sub(r'[\x00-\x08\x0B\x0C\x0E-\x1F]', '', text)
+
 # Parse AI response
 def parse_quiz_output(text: str) -> List[Question]:
     try:
         match = re.search(r'\{.*\}', text, re.DOTALL)
         if not match:
             raise ValueError("No JSON found in AI response")
+        
+        cleaned = clean_ai_response(match.group(0))
 
-        data = json.loads(match.group(0))
+        data = json.loads(cleaned)
         return [
             Question(
                 id=i + 1,
