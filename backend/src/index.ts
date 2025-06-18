@@ -28,7 +28,7 @@ mongoose
   .catch((err) => console.error('❌ MongoDB connection error:', err));
 
 // AI microservice URL
-const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://ai-service:5000';
+const AI_SERVICE_URL = 'https://quiz-app-ai-service.onrender.com';
 
 interface Question {
   id: string;
