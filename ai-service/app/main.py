@@ -9,6 +9,14 @@ import re
 
 app = FastAPI(title="Simple AI Quiz Generator")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace with specific origins in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Logging setup
 logging.basicConfig(level=logging.INFO)
 
@@ -99,12 +107,14 @@ async def generate_quiz(topic: str) -> List[Question]:
 # GET endpoint
 @app.get("/generate-quiz", response_model=QuizResponse)
 async def get_quiz(topic: str = Query(..., min_length=1, description="Quiz topic")):
+    print(f"[LOG] Generating quiz for topic: {topic}")
     return QuizResponse(questions=await generate_quiz(topic))
 
 # POST endpoint
 @app.post("/generate-quiz", response_model=QuizResponse)
 async def post_quiz(data: dict = Body(...)):
     topic = data.get("topic", "").strip()
+    print(f"[LOG] POST request to generate quiz with topic: {topic}")
     if not topic:
         raise HTTPException(status_code=400, detail="Topic is required")
     return QuizResponse(questions=await generate_quiz(topic))
