@@ -1,75 +1,180 @@
-# Quiz App
+# Quiz App Monorepo
 
-A modern, interactive quiz application built with [Create React App](https://create-react-app.dev/) and TypeScript.
+A full-stack, AI-powered quiz application with a modern React frontend, a Node.js/Express backend, and a Python-based AI service.  
+All services are containerized and orchestrated with Docker Compose.
+
+## Live URLs
+**Frontend:** [https://quiz-app-five-orpin.vercel.app/](https://quiz-app-five-orpin.vercel.app/)
+**Backend:** [https://quiz-app-backend-y3rr.onrender.com](https://quiz-app-backend-y3rr.onrender.com)
+**AI Service:** [https://quiz-app-ai-service.onrender.com](https://quiz-app-ai-service.onrender.com)
+
+---
+
+## Project Structure
+
+```
+quiz-app/
+│
+├── frontend/      # React + TypeScript client (Tailwind CSS, Framer Motion, etc.)
+├── backend/       # Node.js/Express API server (TypeScript, MongoDB)
+├── ai-service/    # Python FastAPI AI microservice
+├── docker-compose.yml
+```
+
+---
 
 ## Features
 
-- Multiple choice questions
-- Real-time score tracking
-- Responsive design
-- Animated UI with Framer Motion
-- Confetti celebration on quiz completion
-- Tailwind CSS for styling
-- Lucide icons for a modern look
+- **Frontend**
+  - Built with React and TypeScript
+  - Modern UI with Tailwind CSS and Framer Motion
+  - Confetti and animated effects
+  - Connects to backend for quiz data and scoring
 
-## Tech Stack
+- **Backend**
+  - Node.js + Express + TypeScript
+  - MongoDB for data storage
+  - REST API for quiz management and results
+  - Communicates with the AI service for question generation and evaluation
 
-- [React](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Lucide React](https://lucide.dev/)
-- [canvas-confetti](https://www.npmjs.com/package/canvas-confetti)
-- [tsparticles](https://particles.js.org/)
+- **AI Service**
+  - Python FastAPI microservice
+  - Uses MISTRAL API (requires `MISTRAL_API_KEY`)
+  - Generates quiz questions
+
+- **DevOps**
+  - Dockerized services for easy setup
+  - MongoDB database with Mongo Express admin UI
+  - Environment variable support
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js (v18 or newer recommended)
-- npm
+- [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
+- (For local dev) Node.js (v18+) and Python 3.10+ if running services outside Docker
 
-### Installation
+---
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-username/quiz-app.git
-   cd quiz-app
-   ```
+### 1. Clone the Repository
 
-2. Install dependencies:
-   ```sh
-   npm install
-   ```
+```sh
+git clone https://github.com/your-username/quiz-app.git
+cd quiz-app
+```
 
-3. Start the development server:
-   ```sh
-   npm start
-   ```
+---
 
-4. Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
+### 2. Environment Variables
+
+- Create a `.env` file in the root directory with your HuggingFace API token:
+  ```
+  HF_API_TOKEN=your_huggingface_api_token
+  ```
+
+---
+
+### 3. Start All Services with Docker Compose
+
+```sh
+docker-compose up --build
+```
+
+- **Frontend:** [http://localhost:3000](http://localhost:3000)
+- **Backend API:** [http://localhost:4000](http://localhost:4000)
+- **AI Service:** [http://localhost:5000](http://localhost:5000)
+- **Mongo Express:** [http://localhost:8081](http://localhost:8081) (user: `admin`, pass: `admin123`)
+
+---
+
+### 4. Development (Optional: Run Services Individually)
+
+#### Frontend
+
+```sh
+cd frontend
+npm install
+npm start
+```
+
+#### Backend
+
+```sh
+cd backend
+npm install
+npm run dev
+```
+
+#### AI Service
+
+```sh
+cd ai-service
+pip install -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 5000
+```
+
+---
 
 ## Scripts
 
-- `npm start` — Run the app in development mode
-- `npm run build` — Build the app for production
+### Frontend
+
+- `npm start` — Start React dev server
+- `npm run build` — Build for production
 - `npm test` — Run tests
 
-## Project Structure
+### Backend
+
+- `npm run dev` — Start in dev mode (TypeScript)
+- `npm run build` — Compile TypeScript
+- `npm start` — Run compiled server
+
+### AI Service
+
+- `uvicorn main:app --host 0.0.0.0 --port 5000` — Start FastAPI server
+
+---
+
+## Project Structure Details
 
 ```
-src/
-  components/    # Reusable UI components
-  pages/         # Main app pages
-  hooks/         # Custom React hooks
-  utils/         # Utility functions
-  App.tsx        # Main app component
-  index.tsx      # Entry point
+frontend/
+  ├── src/
+  │   ├── components/
+  │   ├── pages/
+  │   ├── hooks/
+  │   ├── utils/
+  │   ├── App.tsx
+  │   └── index.tsx
+  └── package.json
+
+backend/
+  ├── src/
+  │   ├── index.ts
+  │   └── ...other files
+  ├── package.json
+  └── tsconfig.json
+
+ai-service/
+  ├── app/
+  │   ├── main.py
+  │   └── ...other files
+  ├── requirements.txt
+  └── Dockerfile
 ```
 
-## Customization
-- **Styling:**  
-  Modify Tailwind classes or update `tailwind.config.js` as needed.
+---
+
+## Useful URLs
+
+- **Frontend:** [http://localhost:3000](http://localhost:3000)
+- **Backend API:** [http://localhost:4000](http://localhost:4000)
+- **AI Service:** [http://localhost:5000](http://localhost:5000)
+- **Mongo Express:** [http://localhost:8081](http://localhost:8081)
+
+---
 
 ## License
 
@@ -77,4 +182,4 @@ MIT
 
 ---
 
-Made with ❤️ using React and TypeScript.
+Made with ❤️ by the Quiz App Team.

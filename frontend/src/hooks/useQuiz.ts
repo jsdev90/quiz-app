@@ -62,6 +62,7 @@ export function useQuiz() {
       const data: GradeResult = await response.json();
       setResult(data);
       setStatus(Status.Success);
+      setOpen(true);
     } catch (err: any) {
       setError(err.message || "Failed to grade quiz");
       setStatus(Status.Idle);
@@ -73,6 +74,14 @@ export function useQuiz() {
       await handleSubmit();
     }
   };
+
+  const handleReset = () => {
+    setQuiz(null);
+    setOpen(false);
+    setAnswers({});
+    setResult(null);
+    setStatus(Status.Idle);
+  }
 
   useEffect(() => {
     if (status === Status.Success) {
@@ -112,5 +121,6 @@ export function useQuiz() {
     simulateResponse,
     handleSave,
     setOpen,
+    handleReset
   };
 }

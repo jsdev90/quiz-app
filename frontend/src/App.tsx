@@ -20,9 +20,9 @@ function App() {
     setTopic,
     simulateResponse,
     handleSave,
-    setQuiz,
     setAnswers,
     setOpen,
+    handleReset
   } = useQuiz();
 
   useKeepAlive();
@@ -45,7 +45,7 @@ function App() {
         {quiz?.quizId && (
           <QuizComponent
             quiz={quiz}
-            onReset={() => setQuiz(null)}
+            onReset={handleReset}
             answers={answers}
             setAnswers={setAnswers}
             error={error}

@@ -1,4 +1,3 @@
-"use client";
 import { AnimatePresence, motion } from "framer-motion";
 import React, {
   ReactNode,
@@ -6,7 +5,7 @@ import React, {
   useRef,
 } from "react";
 import { useOutsideClick } from "../hooks/useOutsideClick";
-import { SidebarCloseIcon } from "lucide-react";
+import { X } from "lucide-react";
 
 export const ModalBody = ({
     open,
@@ -53,7 +52,7 @@ export const ModalBody = ({
           <motion.div
             ref={modalRef}
             className={`
-              min-h-[50%] max-h-[90%] md:max-w-[40%] bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden
+              max-h-[90%] md:max-w-[40%] bg-gray-800 border border-transparent md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden
               ${className}
             `}
             initial={{
@@ -79,7 +78,7 @@ export const ModalBody = ({
               damping: 15,
             }}
           >
-            <SidebarCloseIcon onClick={() => setOpen(false)}/>
+            <X onClick={() => setOpen(false)} className="text-gray-100 absolute right-4 top-4 cursor-pointer" />
             {children}
           </motion.div>
         </motion.div>
@@ -111,7 +110,7 @@ export const ModalFooter = ({
 }) => {
   return (
     <div
-      className={`flex justify-end p-4 bg-gray-100 dark:bg-neutral-900
+      className={`flex justify-end p-4 bg-gray-700
         ${className}
       `}
     >

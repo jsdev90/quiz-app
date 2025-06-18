@@ -37,62 +37,35 @@ const QuizComponent: React.FC<QuizProps> = ({
   };
 
   if (result) {
-    // return (
-    //   <div className="p-6 bg-white rounded shadow">
-    //     <h2 className="text-xl font-bold mb-4">
-    //       Your Score: {result.correct} / {result.total}
-    //     </h2>
-    //     <ul className="space-y-2 mb-6">
-    //       {result.feedback.map((f) => (
-    //         <li
-    //           key={f.id}
-    //           className={`text-sm ${
-    //             f.yourAnswer === f.correctAnswer
-    //               ? "text-green-600"
-    //               : "text-red-600"
-    //           }`}
-    //         >
-    //           <span className="font-medium">Question {f.id}:</span> Your answer:{" "}
-    //           <span className="italic">{f.yourAnswer}</span> — Correct answer:{" "}
-    //           <span className="italic">{f.correctAnswer}</span>
-    //         </li>
-    //       ))}
-    //     </ul>
-    //     <button
-    //       onClick={onReset}
-    //       className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-    //     >
-    //       Try another quiz
-    //     </button>
-    //   </div>
-    // );
     return (
       <ModalBody open={open} setOpen={setOpen}>
-        <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
+        <h4 className="text-2xl text-gray-100 dark:text-neutral-100 font-bold text-center m-4">
           Your Score:{" "}
-          <span className="px-1 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 dark:border-neutral-700 border border-gray-200">
+          <span className="px-1 py-0.5 rounded-md bg-red-400">
             {result.correct} / {result.total}
           </span>
         </h4>
-        <ul className="space-y-2 mb-6">
-          {result.feedback.map((f) => (
-            <li
-              key={f.id}
-              className={`text-sm ${
-                f.yourAnswer === f.correctAnswer
-                  ? "text-green-600"
-                  : "text-red-600"
-              }`}
-            >
-              <span className="font-medium">Question {f.id}:</span> Your answer:{" "}
-              <span className="italic">{f.yourAnswer}</span> — Correct answer:{" "}
-              <span className="italic">{f.correctAnswer}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="p-5">
+          <ul className="space-y-2 mb-6">
+            {result.feedback.map((f) => (
+              <li
+                key={f.id}
+                className={`text-sm ${
+                  f.yourAnswer === f.correctAnswer
+                    ? "text-green-600"
+                    : "text-red-600"
+                }`}
+              >
+                <span className="font-medium">Question {f.id}:</span>
+                <p>Your answer:{" "}<span className="italic">{f.yourAnswer}</span></p>
+                <p>Correct answer:{" "}<span className="italic">{f.correctAnswer}</span></p>                
+              </li>
+            ))}
+          </ul>
+        </div>
         <ModalFooter className="gap-4">
-          <button className="w-28 bg-black text-white dark:bg-white dark:text-black border border-black">
-            Try another quiz
+          <button className="p-2 rounded-md bg-green-400 text-white" onClick={onReset}>
+            Try Another Quiz
           </button>
         </ModalFooter>
       </ModalBody>

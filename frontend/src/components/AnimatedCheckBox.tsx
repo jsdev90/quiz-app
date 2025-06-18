@@ -37,7 +37,7 @@ const NeonCheckbox: React.FC<NeonCheckboxProps> = ({
 
   return (
     <label 
-      className={`relative inline-block w-[var(--size)] h-[var(--size)] cursor-pointer ${className}`} 
+      className={`min-w-6 relative inline-block w-[var(--size)] h-[var(--size)] cursor-pointer ${className}`} 
       style={neonCheckboxStyles}
     >
       <input 
