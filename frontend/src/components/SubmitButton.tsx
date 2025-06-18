@@ -68,7 +68,7 @@ export function Button({
         variants={buttonVariants}
         className={`group relative grid overflow-hidden rounded-full px-6 py-2 transition-all duration-200",
           status === "idle"
-            ? "shadow-[0_1000px_0_0_hsl(0_0%_85%)_inset] dark:shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset]"
+            ? "shadow-[0_1000px_0_0_hsl(0_0%_20%)_inset]"
             : "",
           "hover:shadow-lg
           ${className}
@@ -82,8 +82,7 @@ export function Button({
               className={`
                 spark mask-gradient absolute inset-0 h-[100%] w-[100%] animate-flip overflow-hidden rounded-full
                 [mask:linear-gradient(black,_transparent_50%)] before:absolute before:aspect-square before:w-[200%] before:bg-[conic-gradient(from_0deg,transparent_0_340deg,black_360deg)]
-                before:rotate-[-90deg] before:animate-rotate dark:before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)]
-                before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%] dark:[mask:linear-gradient(white,_transparent_50%)]
+                before:rotate-[-90deg] before:content-[''] before:[inset:0_auto_auto_50%] before:[translate:-50%_-15%]
               `}
             />
           </span>
@@ -93,7 +92,7 @@ export function Button({
             backdrop absolute inset-px rounded-[22px] transition-colors duration-200
             ${
               status === "idle"
-                ? "bg-gray-100 group-hover:bg-neutral-200 dark:bg-gray-900 dark:group-hover:bg-gray-800"
+                ? "bg-gray-900 group-hover:bg-gray-800"
                 : ""
             }
           `}
