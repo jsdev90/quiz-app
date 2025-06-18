@@ -109,6 +109,7 @@ async def generate_quiz(topic: str) -> List[Question]:
 @app.get("/generate-quiz", response_model=QuizResponse)
 async def get_quiz(topic: str = Query(..., min_length=1, description="Quiz topic")):
     print(f"[LOG] Generating quiz for topic: {topic}")
+    logging.info(f"Received request to generate quiz for topic: {topic}")
     return QuizResponse(questions=await generate_quiz(topic))
 
 # POST endpoint
@@ -116,6 +117,7 @@ async def get_quiz(topic: str = Query(..., min_length=1, description="Quiz topic
 async def post_quiz(data: dict = Body(...)):
     topic = data.get("topic", "").strip()
     print(f"[LOG] POST request to generate quiz with topic: {topic}")
+    logging.info(f"Received POST request to generate quiz for topic: {topic}")
     if not topic:
         raise HTTPException(status_code=400, detail="Topic is required")
     return QuizResponse(questions=await generate_quiz(topic))
