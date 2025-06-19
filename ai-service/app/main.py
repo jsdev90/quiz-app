@@ -23,7 +23,7 @@ app.add_middleware(
 logging.basicConfig(level=logging.INFO)
 
 # Mistral API configuration
-MISTRAL_API_URL = os.environ.get("MISTRAL_API_URL")
+MISTRAL_API_URL = os.environ.get("MISTRAL_API_URL", "https://api.mistral.ai/v1") 
 MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")
 
 # Cache to avoid repeated generation
