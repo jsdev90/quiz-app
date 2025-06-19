@@ -28,7 +28,6 @@ export function useQuiz() {
         }
       );
       const data: Quiz = await response.json();
-      console.log(data);
       setQuiz(data);
       setLoading(false);
     } catch (err: any) {
@@ -56,7 +55,6 @@ export function useQuiz() {
         }
       );
 
-      console.log("grade response", response);
       if (!response.ok) throw new Error(`Error: ${response.statusText}`);
 
       const data: GradeResult = await response.json();
