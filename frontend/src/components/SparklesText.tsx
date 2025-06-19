@@ -2,7 +2,7 @@ import { CSSProperties, ReactElement, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatedText } from "./AnimatedText";
 
-interface Sparkle {
+interface SparkleProps {
   id: string;
   x: string;
   y: string;
@@ -64,10 +64,10 @@ const SparklesText: React.FC<SparklesTextProps> = ({
   sparklesCount = 10,
   ...props
 }) => {
-  const [sparkles, setSparkles] = useState<Sparkle[]>([]);
+  const [sparkles, setSparkles] = useState<SparkleProps[]>([]);
 
   useEffect(() => {
-    const generateStar = (): Sparkle => {
+    const generateStar = (): SparkleProps => {
       const starX = `${Math.random() * 100}%`;
       const starY = `${Math.random() * 100}%`;
       const color = Math.random() > 0.5 ? colors.first : colors.second;
@@ -123,7 +123,7 @@ const SparklesText: React.FC<SparklesTextProps> = ({
   );
 };
 
-const Sparkle: React.FC<Sparkle> = ({ id, x, y, color, delay, scale }) => {
+const Sparkle: React.FC<SparkleProps> = ({ id, x, y, color, delay, scale }) => {
   return (
     <motion.svg
       key={id}

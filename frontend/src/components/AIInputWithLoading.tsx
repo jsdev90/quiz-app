@@ -1,5 +1,4 @@
 import { CornerRightDown } from "lucide-react";
-import { useState, useEffect } from "react";
 import { useAutoResizeTextarea } from "../hooks/useAutoResizeTextarea";
 import { TextShimmer } from "./TextShimmer";
 
