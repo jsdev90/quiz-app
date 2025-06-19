@@ -4,9 +4,9 @@ A full-stack, AI-powered quiz application with a modern React frontend, a Node.j
 All services are containerized and orchestrated with Docker Compose.
 
 ## Live URLs
-**Frontend:** [https://quiz-app-five-orpin.vercel.app/](https://quiz-app-five-orpin.vercel.app/)
-**Backend:** [https://quiz-app-backend-y3rr.onrender.com](https://quiz-app-backend-y3rr.onrender.com)
-**AI Service:** [https://quiz-app-ai-service.onrender.com](https://quiz-app-ai-service.onrender.com)
+- **Frontend:** [https://quiz-app-five-orpin.vercel.app/](https://quiz-app-five-orpin.vercel.app/)
+- **Backend:** [https://quiz-app-backend-y3rr.onrender.com](https://quiz-app-backend-y3rr.onrender.com)
+- **AI Service:** [https://quiz-app-ai-service.onrender.com](https://quiz-app-ai-service.onrender.com)
 
 ---
 
