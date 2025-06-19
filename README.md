@@ -4,7 +4,7 @@ A full-stack, AI-powered quiz application with a modern React frontend, a Node.j
 All services are containerized and orchestrated with Docker Compose.
 
 ## Live URLs
-- **Frontend:** [https://quiz-app-five-orpin.vercel.app/](https://quiz-app-five-orpin.vercel.app/)
+- **Frontend:** [https://quiz-app-five-orpin.vercel.app/](https://quiz-app-five-orpin.vercel.app)
 - **Backend:** [https://quiz-app-backend-y3rr.onrender.com](https://quiz-app-backend-y3rr.onrender.com)
 - **AI Service:** [https://quiz-app-ai-service.onrender.com](https://quiz-app-ai-service.onrender.com)
 
@@ -99,6 +99,11 @@ npm install
 npm start
 ```
 
+#### Backend && AI Service
+```sh
+docker-compose up
+```
+
 #### Backend
 
 ```sh
@@ -167,12 +172,20 @@ ai-service/
 
 ---
 
-## Useful URLs
+## Local URLs
 
 - **Frontend:** [http://localhost:3000](http://localhost:3000)
 - **Backend API:** [http://localhost:4000](http://localhost:4000)
 - **AI Service:** [http://localhost:5000](http://localhost:5000)
 - **Mongo Express:** [http://localhost:8081](http://localhost:8081)
+
+---
+
+---
+
+## Superfluous API requests
+
+To prevent the backend and AI service (both hosted on Render's free tier) from sleeping due to inactivity, I send periodic HTTP requests ("pings") to keep them awake.
 
 ---
 
@@ -182,4 +195,4 @@ MIT
 
 ---
 
-Made with ❤️ by the Quiz App Team.
+Made with ❤️ by Johann.
