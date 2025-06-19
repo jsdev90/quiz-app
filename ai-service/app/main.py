@@ -24,7 +24,7 @@ logging.basicConfig(level=logging.INFO)
 
 # Mistral API configuration
 MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions"
-MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "0nNz0kUmmeNNziKiCUcKjeAQZiaB4xso")
+MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")
 
 # Cache to avoid repeated generation
 quiz_cache = {}
