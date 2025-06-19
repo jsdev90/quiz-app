@@ -23,7 +23,7 @@ app.add_middleware(
 logging.basicConfig(level=logging.INFO)
 
 # Mistral API configuration
-MISTRAL_API_URL = os.environ.get("MISTRAL_API_URL", "https://api.mistral.ai/v1") 
+MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions"
 MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")
 
 # Cache to avoid repeated generation
@@ -55,7 +55,7 @@ async def call_mistral_api(prompt: str) -> str:
     }
 
     async with httpx.AsyncClient(timeout=30) as client:
-        response = await client.post("{MISTRAL_API_URL}/chat/completions", headers=headers, json=payload)
+        response = await client.post(MISTRAL_API_URL, headers=headers, json=payload)
         if response.status_code != 200:
             logging.error(f"Mistral API error {response.status_code}: {response.text}")
             raise HTTPException(status_code=502, detail="Failed to generate quiz from AI")
