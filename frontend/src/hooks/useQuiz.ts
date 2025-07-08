@@ -114,7 +114,6 @@ export function useQuiz() {
     open,
     setLoading,
     setTopic,
-    setQuiz,
     setAnswers,
     simulateResponse,
     handleSave,
