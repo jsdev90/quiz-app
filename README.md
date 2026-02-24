@@ -195,4 +195,4 @@ MIT
 
 ---
 
-Made with ❤️ by Johann.
+Made with ❤️ by JS.
